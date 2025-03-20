@@ -97,4 +97,67 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
+    @Test
+    void shouldReturnInitialVolume() {
+        Radio radio = new Radio();
+
+        long expected = 0;
+        long actual = radio.getVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void incVolumeShouldIncreaseVolumeBy1() {
+        Radio radio = new Radio();
+
+        long expected = 1;
+        radio.increaseVolume();
+        long actual = radio.getVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void incVolume101TimesVolumeShouldBe100() {
+        Radio radio = new Radio();
+
+        long expected = 100;
+
+        for (int i = 0; i < 101; i++) {
+            radio.increaseVolume();
+        }
+
+        long actual = radio.getVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void decVolumeShouldDecreaseVolumeBy1() {
+        Radio radio = new Radio();
+
+        // Увеличить громкость, чтобы проверить уменьшение в пределах допустимых значений
+        radio.increaseVolume();
+        radio.increaseVolume();
+
+
+        long expected = 1;
+        radio.decreaseVolume();
+        long actual = radio.getVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void DecVolumeIfCurrentVolumeIs0ShouldBe0() {
+        Radio radio = new Radio();
+
+        long expected = 0;
+        radio.decreaseVolume();
+        long actual = radio.getVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
 }

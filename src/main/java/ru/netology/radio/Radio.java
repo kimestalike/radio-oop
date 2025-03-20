@@ -39,4 +39,28 @@ public class Radio {
 
         setStation(prev);
     }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public void increaseVolume() {
+        int next = volume + 1;
+
+        if (next > 100) {
+            next = 100;
+        }
+
+        volume = next;
+    }
+
+    public void decreaseVolume() {
+        int next = volume - 1;
+
+        if (next < 0) {
+            next = 0;
+        }
+
+        volume = next;
+    }
 }
